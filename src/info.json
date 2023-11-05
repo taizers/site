@@ -1,0 +1,57 @@
+{
+    "lections": [
+        {
+            "title": "заголовок 1",
+            "text": [
+                "1The background-image property sets one or more background images for an element.",
+                "1By default, a background-image is placed at the top-left corner of an element, and repeated both vertically and horizontally.Tip: The background of an element is the total size of the element, including padding and border (but not the margin)",
+                "1Tip: Always set a background-color to be used if the image is unavailable"
+            ]
+        },
+        {
+            "title": "заголовок 2",
+            "text": [
+                "2The background-image property sets one or more background images for an element.",
+                "2By default, a background-image is placed at the top-left corner of an element, and repeated both vertically and horizontally.Tip: The background of an element is the total size of the element, including padding and border (but not the margin)",
+                "2Tip: Always set a background-color to be used if the image is unavailable"
+            ]
+        },
+        {
+            "title": "заголовок 3",
+            "text": [
+                "3The background-image property sets one or more background images for an element.",
+                "3By default, a background-image is placed at the top-left corner of an element, and repeated both vertically and horizontally.Tip: The background of an element is the total size of the element, including padding and border (but not the margin)",
+                "3Tip: Always set a background-color to be used if the image is unavailable"
+            ]
+        }
+    ],
+    "quize": [
+        {
+            "question": "The background-image property sets one or more background images for an element.",
+            "variants": [
+                "By default",
+                "he background",
+                "property sets one"
+            ],
+            "rightVariant": "1"
+        },
+        {
+            "question": "question: 2",
+            "variants": [
+                "1",
+                "2",
+                "3"
+            ],
+            "rightVariant": "2"
+        },
+        {
+            "question": "question: 3",
+            "variants": [
+                "1",
+                "2",
+                "3"
+            ],
+            "rightVariant": "3"
+        }
+    ]
+}

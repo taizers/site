@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
+import LayOut from './components/Layout';
+import NotFound from './components/NotFound';
+import Lections from './components/Lections';
+import Main from './components/Main';
+import Quize from './components/Quize';
+
+import info from './info.json';
+import { useAppDispatch } from './hooks';
+import { setLections, setQuize } from './store/redusers/infoSlice';
+
+const App: FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setLections(info.lections));
+    dispatch(setQuize(info.quize));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path={'/'} element={<LayOut />}>
+        <Route
+          index
+          element={<Main />}
+        />
+        <Route path={'lections'} element={<Lections />} />
+        <Route path={'quize'} element={<Quize />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
-}
+};
+
 
 export default App;
