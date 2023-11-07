@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import { textColor } from '../constants';
 
 interface IForm {
   setFormOpen: (value: boolean) => void;
@@ -31,8 +32,12 @@ const Form: FC<IForm> = ({setFormOpen, arriveName}) => {
       autoComplete="off"
     >
       <TextField
-        label="Имя"
+        label="Введите имя"
         value={name}
+        InputLabelProps={{
+          style: { color: textColor },
+        }}
+        sx={{input: { color: textColor }}}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setName(event.target.value);
         }}

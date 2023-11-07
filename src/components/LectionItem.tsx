@@ -12,18 +12,19 @@ const LectionItem: FC<ILectionItem> = ({lection}) => {
     return (
         <Box sx={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         flexDirection: 'column',
+        m: '20px',
+        overflow: "auto",
+        height: '100%'
         }}>
-            <Typography fontWeight={'600'} component="h3" variant="h4">
+            <Typography sx={{textAlign: 'justify'}} fontWeight={'600'} component="h3" variant="h4">
                 {lection?.title}
             </Typography>
             <Box>
 
                 {
                     lection?.text.map((item, index) => {
-                    return <Typography key={index} component="p" variant="h6">
+                    return <Typography sx={{textIndent: '40px', textAlign: 'justify'}} key={index} component="p" variant="h6">
                             {item}
                         </Typography>
                     })

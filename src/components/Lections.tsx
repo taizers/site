@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { useAppSelector } from '../hooks';
 import LectionItem from './LectionItem';
-import { startPage } from '../constants';
+import { startPage, textColor } from '../constants';
 import Pagination from './Pagination';
 
 const Lections: FC = () => {
@@ -12,21 +12,17 @@ const Lections: FC = () => {
   return (
     <Box sx={{
       display: 'flex',
-      justifyContent: 'center',
+      height: '100%',
+      color: textColor,
       alignItems: 'center',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      background: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(28,171,217,1) 100%)'
     }} className={'container'}>
       <Button sx={{mb: '50px', mt: '20px'}} variant="contained" href="/">
         На главную
       </Button>
-      <Box sx={{      
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}>
-         {lections?.length && <LectionItem lection={lections[page]} />}
-         {lections?.length && <Pagination setPage={setPage} page={page} totalPages={lections.length} />}
-      </Box>
+      {lections?.length && <LectionItem lection={lections[page]} />}
+      {lections?.length && <Pagination setPage={setPage} page={page} totalPages={lections.length} />}
     </Box>
   );
 };

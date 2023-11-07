@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { textColor } from '../constants';
 
 interface IPagination {
     page: number;
@@ -14,7 +15,7 @@ function createArray(N: number) {
         newArr.push(i);
     }
     return newArr;
-}
+};
 
 const Pagination: FC<IPagination> = ({page, setPage, totalPages}) => {
     const handleChange = (
@@ -29,28 +30,30 @@ const Pagination: FC<IPagination> = ({page, setPage, totalPages}) => {
             return setPage(+page+1);
         }
 
-        if (value !== '>' && value !== '<') {
-            setPage(+value);
-        }
+        // if (value !== '>' && value !== '<') {
+        //     setPage(+value);
+        // }
     };
 
     const arr = createArray(totalPages);
 
     return (
         <ToggleButtonGroup
-            color="primary"
+            color="standard"
             value={page.toString()}
             exclusive
+            size='large'
             onChange={handleChange}
-            sx={{m: '15px'}}
+            sx={{mb: '20px', mt: 'auto'}}
         >
-            <ToggleButton value="<">{'<'}</ToggleButton>
-            {
+            <ToggleButton sx={{color: textColor}} value="<">{'<'}</ToggleButton>
+            <ToggleButton sx={{color: textColor}} value={`${page}`}>{page+1}</ToggleButton>
+            {/* {
                 arr.map(item => {
-                    return <ToggleButton key={item} value={`${item}`}>{item+1}</ToggleButton>
+                    return <ToggleButton sx={{color: textColor}} key={item} value={`${item}`}>{item+1}</ToggleButton>
                 })
-            }
-            <ToggleButton value=">">{'>'}</ToggleButton>
+            } */}
+            <ToggleButton sx={{color: textColor}} value=">">{'>'}</ToggleButton>
         </ToggleButtonGroup>
     );
 };

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { startPage } from '../constants';
+import { startPage, textColor } from '../constants';
 import QuizeItem from './QuizeItem';
 import ModalWindow from './Modal';
 import Form from './Form';
@@ -26,7 +26,7 @@ const Quize: FC = () => {
       alignItems: 'center',
       flexDirection: 'column',
       height: '100%',
-      color: 'white',
+      color: textColor,
       background: 'linear-gradient(360deg, #191477 0%, rgba(9,9,121,0.8519782913165266) 37%, rgba(0,212,255,1) 100%)',
     }} className={'container'}>
       <Button sx={{mb: '50px', mt: '20px'}} variant="contained" href="/">
@@ -34,7 +34,7 @@ const Quize: FC = () => {
       </Button>
       {isFormOpen && <Form arriveName={arriveName} setFormOpen={setFormOpen} />}
 
-         {!isFormOpen &&quize?.length && <QuizeItem setModalOpen={setModalOpen}  setCurrentBalls={setCurrentBalls} setRightAnswer={setRightAnswer} quizeItem={quize[page]} />}
+      {!isFormOpen &&quize?.length && <QuizeItem setModalOpen={setModalOpen}  setCurrentBalls={setCurrentBalls} setRightAnswer={setRightAnswer} quizeItem={quize[page]} />}
    
       {isModalOpen && <ModalWindow 
         isOpen={isModalOpen} 

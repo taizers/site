@@ -4,19 +4,20 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../hooks';
-import { minModalDelayInSec } from '../constants';
+import { minModalDelayInSec, textColor } from '../constants';
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  minWidth: 200,
+  maxWidth: 400,
   bgcolor: 'background.paper',
   border: '3px solid #8f7749',
   boxShadow: 24,
   p: 4,
-  color: 'white',
+  color: textColor,
   background: 'linear-gradient(0deg, #292394 0%, rgba(21, 21, 194, 0.852) 37%, rgba(0,212,255,1) 100%)',
 };
 
@@ -44,11 +45,17 @@ const ModalWindow: FC<IModalWindow> = ({setOpen, isOpen, isRight, currentBalls, 
             return;
         }
 
+        if (isTheEnd && countTime < minModalDelayInSec * 3) {
+            return;
+        }
+
         setOpen(false);
         
         if (totalPages && page !== totalPages-1) {
             setPage(page+1);
-        } else {
+        } 
+        
+        if (isTheEnd) {
             history('/');
         }
     };

@@ -44,9 +44,8 @@ const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, set
     return (
         <Box sx={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         flexDirection: 'column',
+        overflow: "auto",
         }}>
             <Typography fontWeight={'600'} component="h3" variant="h4">
                 {quizeItem?.question}
@@ -56,7 +55,8 @@ const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, set
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: '30px',
-                m: '20px'
+                m: '20px',
+                flexWrap: 'wrap',
             }}>
                 {
                     quizeItem.variants.map((item, index) => {
