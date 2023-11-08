@@ -11,20 +11,25 @@ const Main: FC = () => {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       display: 'flex',
-      justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'column',
-      gap: '20px'
+      gap: '20px',
     }} className={'container'}>
-      <Typography sx={{textShadow: '2px 2px 2px #000', color: 'white'}} component="h2" variant="h4">
+      <Typography sx={{textShadow: '2px 2px 2px #000', color: 'white', textAlign: 'center'}} component="h2" variant="h4">
           {'Героическое прошлое белорусского народа'}
       </Typography>
-      <Button variant="contained" href="/lections">
-        Лекции
-      </Button>
-      <Button variant="contained" href="/quize">
-        Тест
-      </Button>
+      <Box sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '30px'
+      }}>
+        <Button variant="contained" href="/lections">
+          Лекции
+        </Button>
+        <Button variant="contained" href="/quize">
+          Тест
+        </Button>
+      </Box>
     </Box>
   );
 };
