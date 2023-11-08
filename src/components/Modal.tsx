@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../hooks';
-import { minModalDelayInSec, textColor } from '../constants';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { minModalDelayInSec, textColor, endModalDelayСoef } from '../constants';
+import { clearBalls, clearName } from '../store/redusers/infoSlice';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -28,13 +29,15 @@ interface IModalWindow {
     isRight: boolean;
     currentBalls: number;
     page: number;
+    currentRightAnswer: string;
     totalPages: number | undefined;
 };
 
-const ModalWindow: FC<IModalWindow> = ({setOpen, isOpen, isRight, currentBalls, setPage, page, totalPages}) => {
+const ModalWindow: FC<IModalWindow> = ({setOpen, currentRightAnswer, isOpen, isRight, currentBalls, setPage, page, totalPages}) => {
     const [isTheEnd, setTheEnd] = useState<boolean>(false);
     const [time, setTime] = useState(Date.now());
     const { balls, name } = useAppSelector((state) => state.info);
+    const dispatch = useAppDispatch();
     
     let history = useNavigate();
 
@@ -45,7 +48,7 @@ const ModalWindow: FC<IModalWindow> = ({setOpen, isOpen, isRight, currentBalls, 
             return;
         }
 
-        if (isTheEnd && countTime < minModalDelayInSec * 3) {
+        if (isTheEnd && countTime < minModalDelayInSec * endModalDelayСoef) {
             return;
         }
 
@@ -56,6 +59,8 @@ const ModalWindow: FC<IModalWindow> = ({setOpen, isOpen, isRight, currentBalls, 
         } 
         
         if (isTheEnd) {
+            dispatch(clearBalls());
+            dispatch(clearName());
             history('/');
         }
     };
@@ -80,9 +85,12 @@ const ModalWindow: FC<IModalWindow> = ({setOpen, isOpen, isRight, currentBalls, 
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         {isRight? "Правильный ответ" : "Неправильный ответ"}
                     </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {isRight && `Вы получили +${currentBalls} баллов` }
-                    </Typography>
+                    {isRight &&<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        {`Вы получили +${currentBalls} баллов`}
+                    </Typography>}
+                    {!isRight &&<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        {`Правильный вариант ответа - ${currentRightAnswer}` }
+                    </Typography>}
                 </Box>}
                 {isTheEnd && <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">

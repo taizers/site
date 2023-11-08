@@ -9,14 +9,6 @@ interface IPagination {
     setPage: (value: number) => void;
 };
 
-function createArray(N: number) {
-    let newArr = [];
-    for (let i = 0; i <= N-1; i++) {
-        newArr.push(i);
-    }
-    return newArr;
-};
-
 const Pagination: FC<IPagination> = ({page, setPage, totalPages}) => {
     const handleChange = (
         event: React.MouseEvent<HTMLElement>,
@@ -29,30 +21,19 @@ const Pagination: FC<IPagination> = ({page, setPage, totalPages}) => {
         if (value === '>' && +page !== totalPages-1) {
             return setPage(+page+1);
         }
-
-        // if (value !== '>' && value !== '<') {
-        //     setPage(+value);
-        // }
     };
-
-    const arr = createArray(totalPages);
 
     return (
         <ToggleButtonGroup
             color="standard"
             value={page.toString()}
             exclusive
-            size='large'
+            size='medium'
             onChange={handleChange}
-            sx={{mb: '20px', mt: 'auto'}}
+            sx={{mb: '10px', mt: 'auto'}}
         >
             <ToggleButton sx={{color: textColor}} value="<">{'<'}</ToggleButton>
             <ToggleButton sx={{color: textColor}} value={`${page}`}>{page+1}</ToggleButton>
-            {/* {
-                arr.map(item => {
-                    return <ToggleButton sx={{color: textColor}} key={item} value={`${item}`}>{item+1}</ToggleButton>
-                })
-            } */}
             <ToggleButton sx={{color: textColor}} value=">">{'>'}</ToggleButton>
         </ToggleButtonGroup>
     );

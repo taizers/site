@@ -13,9 +13,10 @@ interface IQuizeItem {
     setModalOpen: (value: boolean) => void;
     setRightAnswer: (value: boolean) => void;
     setCurrentBalls: (value: number) => void;
+    setCurrentRightAnswer: (value: string) => void;
 };
 
-const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, setCurrentBalls}) => {
+const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, setCurrentBalls, setCurrentRightAnswer}) => {
     const [time, setTime] = useState(Date.now());
     const dispatch = useAppDispatch();
 
@@ -35,6 +36,7 @@ const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, set
             setCurrentBalls(balls);
         } else {    
             setRightAnswer(false);
+            setCurrentRightAnswer(quizeItem?.variants[+quizeItem.rightVariant + 1]);
             setCurrentBalls(0);
         }
 
@@ -46,6 +48,7 @@ const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, set
         display: 'flex',
         flexDirection: 'column',
         overflow: "auto",
+        mt: 0,
         }}>
             <Typography fontWeight={'600'} component="h3" variant="h4">
                 {quizeItem?.question}

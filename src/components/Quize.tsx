@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { startPage, textColor } from '../constants';
+import { maxBallsForQuestion, minModalDelayInSec, startPage, textColor, endModalDelayСoef, quizeBgColor, bgImageLink } from '../constants';
 import QuizeItem from './QuizeItem';
 import ModalWindow from './Modal';
 import Form from './Form';
@@ -15,6 +15,7 @@ const Quize: FC = () => {
   const [isRightAnswer, setRightAnswer] = useState<boolean>(false);
   const [currentBalls, setCurrentBalls] = useState<number>(0);
   const [isFormOpen, setFormOpen] = useState<boolean>(true);
+  const [currentRightAnswer, setCurrentRightAnswer] = useState<string>('');
 
   const arriveName = (name: string) => {
     dispatch(setName(name));
@@ -27,14 +28,20 @@ const Quize: FC = () => {
       flexDirection: 'column',
       height: '100%',
       color: textColor,
-      background: 'linear-gradient(360deg, #191477 0%, rgba(9,9,121,0.8519782913165266) 37%, rgba(0,212,255,1) 100%)',
+      background: bgImageLink ? `url(/static/${bgImageLink})` : quizeBgColor,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
     }} className={'container'}>
-      <Button sx={{mb: '50px', mt: '20px'}} variant="contained" href="/">
+      <Button sx={{mb: '20px', mt: '10px'}} variant="contained" href="/">
         На главную
       </Button>
       {isFormOpen && <Form arriveName={arriveName} setFormOpen={setFormOpen} />}
+      {isFormOpen && <Typography sx={{textIndent: '40px', textAlign: 'justify'}} component="h2" variant="h6">
+          {`Для начала теста введите своё имя. На каждый вопрос будет дано ${maxBallsForQuestion} секунд на ответ, каждую секунду отнимается по 1 баллу, максимум баллов который можно получить за один вопрос - ${maxBallsForQuestion}. Задержка после каждого ответа ${minModalDelayInSec} секунда, задержка после ответа на все вопросы ${minModalDelayInSec * endModalDelayСoef} секунды.`}
+        </Typography>}
 
-      {!isFormOpen &&quize?.length && <QuizeItem setModalOpen={setModalOpen}  setCurrentBalls={setCurrentBalls} setRightAnswer={setRightAnswer} quizeItem={quize[page]} />}
+      {!isFormOpen &&quize?.length && <QuizeItem setCurrentRightAnswer={setCurrentRightAnswer} setModalOpen={setModalOpen}  setCurrentBalls={setCurrentBalls} setRightAnswer={setRightAnswer} quizeItem={quize[page]} />}
    
       {isModalOpen && <ModalWindow 
         isOpen={isModalOpen} 
@@ -44,6 +51,7 @@ const Quize: FC = () => {
         setOpen={setModalOpen} 
         currentBalls={currentBalls} 
         isRight={isRightAnswer} 
+        currentRightAnswer={currentRightAnswer} 
       />}
     </Box>
   );

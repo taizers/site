@@ -21,15 +21,12 @@ const Form: FC<IForm> = ({setFormOpen, arriveName}) => {
 
   return (
     <Box
-      component="form"
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
       }}
-      noValidate
-      autoComplete="off"
     >
       <TextField
         label="Введите имя"

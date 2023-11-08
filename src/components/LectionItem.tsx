@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { Box, Typography } from '@mui/material';
+import MasonryImageList from './ImageList';
 
 interface ILectionItem {
     lection: {
         title: string;
-        text: Array<string>
+        text: Array<string>;
+        photos?: Array<string>;
     };
 };
 
@@ -14,6 +16,7 @@ const LectionItem: FC<ILectionItem> = ({lection}) => {
         display: 'flex',
         flexDirection: 'column',
         m: '20px',
+        mt: 0,
         overflow: "auto",
         height: '100%'
         }}>
@@ -21,7 +24,6 @@ const LectionItem: FC<ILectionItem> = ({lection}) => {
                 {lection?.title}
             </Typography>
             <Box>
-
                 {
                     lection?.text.map((item, index) => {
                     return <Typography sx={{textIndent: '40px', textAlign: 'justify'}} key={index} component="p" variant="h6">
@@ -30,6 +32,7 @@ const LectionItem: FC<ILectionItem> = ({lection}) => {
                     })
                 }
             </Box>
+            {lection?.photos && <MasonryImageList images={lection.photos} />}
         </Box>
     );
 };

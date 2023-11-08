@@ -1,4 +1,9 @@
 export const startPage = 0;
 export const maxBallsForQuestion = 200;
 export const minModalDelayInSec = 1;
-export const textColor = 'white';
+export const endModalDelayСoef = 3;
+export const textColor = 'black';
+export const lectionsBgColor = 'gray';
+export const quizeBgColor = 'gray';
+export const bgImageLink = 'bg-image.jpg';
+export const bgMainImageLink = 'volkovysk.jpg';
