@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { minModalDelayInSec, textColor, endModalDelayСoef } from '../constants';
+import { minModalDelayInSec, textColor, endModalDelayСoef, bgImageLink, quizeBgColor } from '../constants';
 import { clearBalls, clearName } from '../store/redusers/infoSlice';
 
 const style = {
@@ -19,7 +19,10 @@ const style = {
   boxShadow: 24,
   p: 4,
   color: textColor,
-  background: 'linear-gradient(0deg, #292394 0%, rgba(21, 21, 194, 0.852) 37%, rgba(0,212,255,1) 100%)',
+  background: bgImageLink ? `url(/static/${bgImageLink})` : quizeBgColor,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
 };
 
 interface IModalWindow {
