@@ -99,6 +99,9 @@ const ModalWindow: FC<IModalWindow> = ({setOpen, currentRightAnswer, isOpen, isR
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         {"Поздравляем!"}
                     </Typography>
+                    {!isRight &&<Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        {`Правильный вариант ответа - ${currentRightAnswer}` }
+                    </Typography>}
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {`${name} Вы заработали за игру ${balls} баллов` }
                     </Typography>
