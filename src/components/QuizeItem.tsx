@@ -36,7 +36,7 @@ const QuizeItem: FC<IQuizeItem> = ({quizeItem, setModalOpen, setRightAnswer, set
             setCurrentBalls(balls);
         } else {    
             setRightAnswer(false);
-            setCurrentRightAnswer(quizeItem?.variants[+quizeItem.rightVariant + 1]);
+            setCurrentRightAnswer(quizeItem?.variants[+quizeItem.rightVariant - 1]);
             setCurrentBalls(0);
         }
 
