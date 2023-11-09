@@ -6,4 +6,4 @@ export const textColor = 'black';
 export const lectionsBgColor = 'gray';
 export const quizeBgColor = 'gray';
 export const bgImageLink = 'bg-image.jpg';
-export const bgMainImageLink = 'volkovysk.jpg';
+export const bgMainImageLink = 'bg-image-main.jpg';
