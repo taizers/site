@@ -39,7 +39,7 @@ const Form: FC<IForm> = ({setFormOpen, arriveName}) => {
           setName(event.target.value);
         }}
       />
-      <Button variant="contained" onClick={handleClick}>Сохранить</Button>
+      <Button variant="contained" onClick={handleClick}>Далее</Button>
     </Box>
   );
 };

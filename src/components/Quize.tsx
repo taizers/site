@@ -36,10 +36,10 @@ const Quize: FC = () => {
       <Button sx={{mb: '20px', mt: '10px'}} variant="contained" href="/">
         На главную
       </Button>
-      {isFormOpen && <Form arriveName={arriveName} setFormOpen={setFormOpen} />}
       {isFormOpen && <Typography sx={{textIndent: '40px', textAlign: 'justify'}} component="h2" variant="h6">
-          {`Для начала теста введите своё имя. На каждый вопрос будет дано ${maxBallsForQuestion} секунд на ответ, каждую секунду отнимается по 1 баллу, максимум баллов который можно получить за один вопрос - ${maxBallsForQuestion}. Задержка после каждого ответа ${minModalDelayInSec} секунда, задержка после ответа на все вопросы ${minModalDelayInSec * endModalDelayСoef} секунды.`}
+          {`Для начала теста введите своё имя. Для ответа на каждый вопрос максимум будет дано ${maxBallsForQuestion} секунд, каждую секунду отнимается по 1 баллу, максимум баллов который можно получить за один вопрос - ${maxBallsForQuestion}. Перейти к следующему вопросу можно нажав на пространство вне высветившейся таблички с правильным ответом/таблички с полученными баллами за задание. Задержка после каждого ответа ${minModalDelayInSec} секунда, задержка после ответа на все вопросы ${minModalDelayInSec * endModalDelayСoef} секунды.`}
         </Typography>}
+      {isFormOpen && <Form arriveName={arriveName} setFormOpen={setFormOpen} />}
 
       {!isFormOpen &&quize?.length && <QuizeItem setCurrentRightAnswer={setCurrentRightAnswer} setModalOpen={setModalOpen}  setCurrentBalls={setCurrentBalls} setRightAnswer={setRightAnswer} quizeItem={quize[page]} />}
    
